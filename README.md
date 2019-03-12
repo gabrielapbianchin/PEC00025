@@ -1,12 +1,11 @@
-#  PEC00025
-## Introduction to Vibration Theory
+#  PEC00025 - INTRODUCTION TO VIBRATION THEORY
 
 _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 
 ## Introduction
 
-### 1. (11/03) Course introduction: GitHub, Markdown, Python, and Jupyter Notebooks
+### 1. (11/03) Computational resources
 
 * [GitHub tutorial](https://guides.github.com/activities/hello-world/)
 * [Markdown tutorial](https://www.markdowntutorial.com/)
@@ -20,7 +19,7 @@ _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 * [Basic Python tutorial](https://www.learnpython.org/)
 * [Online Python3 terminal](https://www.pythonanywhere.com/try-ipython/)
-* [Multivariate Random Processes with Python (MRPy class)](https://github.com/mmaiarocha/MRPy)
+* [Multivariate Random Processes with Python (MRPy class)](https://nbviewer.jupyter.org/github/mmaiarocha/MRPy/blob/master/MRPy_Notebook.ipynb?flush_cache=true)
 * [In depth Python 3 documentation](https://docs.python.org/3.7/)
 
 
