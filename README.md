@@ -4,7 +4,7 @@
 _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 
-## Parte I - Single degree of freedom systems
+## Introduction
 
 ### 1. (11/03) Course introduction: GitHub, Markdown, Python, and Jupyter Notebooks
 
@@ -22,6 +22,10 @@ _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 * [Online Python3 terminal](https://www.pythonanywhere.com/try-ipython/)
 * [Multivariate Random Processes with Python (MRPy class)](https://github.com/mmaiarocha/MRPy)
 * [In depth Python 3 documentation](https://docs.python.org/3.7/)
+
+
+## Parte I - Single degree of freedom systems
+
 
 ### 3. (18/03) Laplace transform
 
