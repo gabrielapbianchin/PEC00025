@@ -4,46 +4,48 @@
 _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 
-## Parte I - Sistemas com um grau de liberdade
+## Parte I - Single degree of freedom systems
 
-### 1. (11/03) Introdução à disciplina: GitHub, Markdown, Python, and Jupyter Notebooks
+### 1. (11/03) Course introduction: GitHub, Markdown, Python, and Jupyter Notebooks
 
-* [Tutorial sobre GitHub](https://guides.github.com/activities/hello-world/)
-* [Tutorial sobre Markdown](https://www.markdowntutorial.com/)
-* [Referência rápida de Markdown](https://en.support.wordpress.com/markdown-quick-reference/)
-* [Tutorial sobre Jupyter Notebooks](https://www.dataquest.io/blog/jupyter-notebook-tutorial/)
-* [Breve introdução a equações em LaTeX](https://www.latex-tutorial.com/tutorials/amsmath/) 
-* [Referência de símbolos matemáticos no LaTeX](https://www.latex-tutorial.com/symbols/math-symbols/)
-* [Compilador de notebooks online (NBViewer)](https://nbviewer.jupyter.org/)
+* [GitHub tutorial](https://guides.github.com/activities/hello-world/)
+* [Markdown tutorial](https://www.markdowntutorial.com/)
+* [Markdown quick reference](https://en.support.wordpress.com/markdown-quick-reference/)
+* [Jupyter Notebooks tutorial](https://www.dataquest.io/blog/jupyter-notebook-tutorial/)
+* [Brief introduction to LaTeX equations](https://www.latex-tutorial.com/tutorials/amsmath/) 
+* [Reference for math symbols in LaTeX](https://www.latex-tutorial.com/symbols/math-symbols/)
+* [Online notebooks compiler (NBViewer)](https://nbviewer.jupyter.org/)
 
-### 2. (13/03) Introdução à linguagem Python
+### 2. (13/03) Introduction to Python language
 
-* [Tutorial sobre Python básico](https://www.learnpython.org/)
+* [Basic Python tutorial](https://www.learnpython.org/)
+* [Online Python3 terminal](https://www.pythonanywhere.com/try-ipython/)
+* [Multivariate Random Processes with Python (MRPy class)](https://github.com/mmaiarocha/MRPy)
+* [In depth Python 3 documentation](https://docs.python.org/3.7/)
+
+### 3. (18/03) Laplace transform
+
+### 4. (20/03) Dynamic equilibrium in time domain
+
+### 5. (25/03) Numerical integration: finite differences and Duhamel method
+
+### 6. (27/03) Fourier Transform
+
+### 7. (01/04) Dynamic equilibrium in frequency domain
+
+### 8. (03/04) Integration, derivation and filtering in frequency domain
+
+### 9. (08/04) First test (P1)
 
 
-### 3. (18/03) Transformada de Laplace
-
-### 4. (20/03) Equilíbrio dinâmico no domínio do tempo
-
-### 5. (25/03) Integração numérica: diferenças finitas e integral de Duhamel
-
-### 6. (27/03) Transformada de Fourier
-
-### 7. (01/04) Equilíbrio dinâmico no domínio da frequência
-
-### 8. (03/04) Integração, derivação e filtragem no domínio da frequência
-
-### 9. (08/04) Primeira Prova (P1)
+## Parte II - Multiple degrees of freedom and continuous systems
 
 
-## Parte II - Sistemas com múltiplos graus de liberdade e sistemas contínuos
+### 10. (10/04) Mass and stiffness matrices: system dynamic properties
 
+### 11. (15/04) Modal analysis and response to given initial conditions
 
-### 10. (10/04) Matrizes de massa e  de rigidez: propriedades dinâmicas
-
-### 11. (15/04) Análise modal e resposta a condições iniciais dadas
-
-### 12. (17/04) 
+### 12. (17/04) Rayleigh quotient for estimating natural frequencies
 
 ### 13. (22/04) 
 
@@ -53,21 +55,22 @@ _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 ### 16. (06/05) 
 
-### 17. (08/05) Segunda Prova (P2)
+### 17. (08/05) Second test (P2)
 
 
-## Parte III - Princípios fundamentais e integração numérica
+## Parte III - Fundamental principles and numerical integration
 
 
-### 18. (13/05) Princípios fundamentais e Princípio de Hamilton
+### 18. (13/05) Hamilton's principle
 
-### 19. (15/05) Equação de Lagrange: Aplicações
+### 19. (15/05) Lagrange equation and applications
 
-### 20. (20/05) Integração numérica da equação matricial de equilíbrio
+### 20. (20/05) Integration of equilibrium equation im matrix form
 
-### 21. (22/05) Estudo de casos
+### 21. (22/05) Vibration problems showcase - part I
 
-### 22. (27/05) Terceira Prova (P3)
+### 22. (27/05) Vibration problems showcase - part II
 
-### 23. (29/05) Provas de recuperação
+### 23. (29/05) Third test (P3)
 
+### 24. (03/06) Retake test
