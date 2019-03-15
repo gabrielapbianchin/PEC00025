@@ -1,0 +1,147 @@
+Universidade Federal do Rio Grande do Sul (UFRGS)   
+Programa de Pós-Graduação em Engenharia Civil (PPGEC)   
+
+# PEC00025: Introduction to Vibration Theory
+
+
+### Class 03 - Laplace Transform
+
+[1.   Introduction](#section_1)  
+[2.   Formal definition](#section_2)  
+[3.   Laplace transform of some basic functions](#section_3)  
+[3.1. Unit step (Heaviside's) function](#section_31)  
+[3.2. Unit impulse (Dirac's delta) function](#section_32)  
+[3.3. Sine and cosine functions](#section_33)  
+[4.   Translation theorems](#section_4)  
+[5.   Transformation of derivatives](#section_5)  
+[6.   Transformation of integrals](#section_6)  
+[7.   Convolution theorem](#section_7)  
+[8.   Solution of diferential equations](#section_8)   
+[9.   Assignment](#section9)
+
+---
+_Prof. Marcelo M. Rocha, Dr.techn._ [(ORCID)](https://orcid.org/0000-0001-5640-1020)  
+_Porto Alegre, RS, Brazil_ 
+
+
+
+
+## 1. Introduction <a name="section_1"></a> 
+
+Whenever a function $f(t)$ is defined by means of a differential equation 
+and a suitable set of boundary conditions, it may be convenient to 
+transform the problem of finding $f(t)$, a function of an independent
+variable $t$ (time), into a new problem of finding $\bar{f}(s)$, function 
+of a transformed independent variable $s$ (complex frequency). 
+This linear operation may be generically expressed as:
+
+$$\bar{f}(s) = \int_{a}^{b} K(s,t) \; f(t) \; dt $$
+
+where the function $K(s,t)$ is called _transform kernel_.
+If the integral limits $a$ and $b$ are finites, the function 
+$\bar{f}(s)$ is a _finite transformation_.
+Among many possibilities, we shall study the two most important kernels 
+in our context of vibration analysis, namely the _Laplace_ and the 
+_Fourier_ transforms.
+These transforms feature the possibility of being reversed in a unique
+way and can be used to find solutions of linear systems (differential
+equations) both algebraically or numerically.
+
+In the particular case of _Laplace Transform_, we are concerned with the
+time domain solutions of the dynamic equilibrium equation for some 
+special loading functions, such as the _unit impulse_ and the _unit step_ 
+functions, which are of fundamental importance for understanding the
+dynamic behavior of structural systems.
+
+
+
+
+## 2. Formal definition  <a name="section_2"></a> 
+
+Let $f(t)$ be a real function defined for all $t > 0$. 
+The _Laplace Transform_ of $f(t)$ is defined as:
+
+$$ \mathcal{L}\left\{ f(t) \right\} = \bar{f}(s) = \int_{0}^{\infty} e^{-st}\; f(t) \; dt $$
+
+The transform kernel in this case is
+
+$$  K(s,t) = e^{-st} $$
+
+with $s$ being a complex frequency $s = \sigma + i\omega$, with units in 
+radians per second for $t$ in seconds.
+Observing that one of the integral bounds is infinite, the function $f(t)$ 
+must fulfill some special conditions such that the integral convergence
+can be ensured.
+For instance, the function $f(t)$ must have a finite number of finite 
+descontinuities and no infinite descontinuity (be piecewise continuous) 
+along the integration interval.
+We will not give further details about these conditions, for there will be
+no issues regarding the functions we will be addressing here.
+
+Although the Laplace transform can be reversed in a unique way, its inverse form
+cannot be expressed as simply as the direct transform. 
+The transform of a given function and its inverse constitutes a so-called
+_transform pair_, usually represented as:
+
+$$ \mathcal{L}\left\{ f(t) \right\} \Longleftrightarrow \mathcal{L}^{-1}\left\{ f(s) \right\} $$
+
+The most straightforward way of using Laplace transforms is by means of _lookup tables_.
+However, some fundamental functions must receive special attention as follows.
+
+
+
+
+## 3. Laplace transform of some basic functions <a name="section_3"></a> 
+
+### 3.1. Unit step (Heaviside's) function <a name="section_31"></a> 
+
+The _unit step_, also known as _Heaviside's function_, is defined as 
+
+$$ H(t-a) = \left\{ 
+            \begin{array}{ll}
+             0 & t < a \\
+             1 & t > a
+            \end{array} 
+            \right . $$
+
+and is depicted in the figure below (for $a = 0$): 
+
+<img src="images/heaviside.png" alt="Heaviside" width="640px"/>
+
+By applying the Laplace transform to this function it results:
+
+$$ \mathcal{L}\left\{ H(t-a) \right\} = \bar{H}(s) = \int_{a}^{\infty} e^{-st} \cdot 1 \cdot dt $$
+
+and hence:
+
+$$ \bar{H}(s) = \frac {e^{-as}}{s} $$
+
+For the particular case where the discontinuity occurs for $t = 0$, with $a = 0$:
+
+$$ \bar{H}(s) = \frac{1}{s} $$
+
+The Heaviside's function usually represents a sudden change in a otherwise static load, 
+which may cause some significant dynamic response.
+
+
+
+
+## 9. Assignment <a name="section_9"></a> 
+
+Let us assume that...
+
+
+
+
+# Plotting a set of complex numbers
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x =  np.linspace(-5,5,100)
+C =  np.exp(x + 1j*x)
+
+plt.scatter(C.real,C.imag, color='blue')
+plt.axis([-20,5,-5,10])
+plt.grid(True)
+plt.show()
