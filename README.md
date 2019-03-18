@@ -28,6 +28,8 @@ _Prof. Marcelo Maia Rocha, PPGEC/UFRGS_
 
 ### 3. (18/03) Laplace transform
 
+* [Jupyter notebook on Laplace transform](https://nbviewer.jupyter.org/github/mmaiarocha/PEC00025/blob/master/resources/Class_03_LaplaceTransform.ipynb?flush_cache=true)
+
 ### 4. (20/03) Dynamic equilibrium in time domain
 
 ### 5. (25/03) Numerical integration: finite differences and Duhamel method
