@@ -74,7 +74,7 @@ class MRPy(np.ndarray):
 #=============================================================================
 # 2. Class constructors from other sources
 #=============================================================================
-
+ 
     def from_resampling(ti, Xi):
         """
         Resampling irregular time step to fixed time step. The last
@@ -151,7 +151,9 @@ class MRPy(np.ndarray):
                 
                 with open(filename+'.txt', 'rb') as target:
     
-                    data = np.genfromtxt(target, delimiter='\t')
+                    data = np.genfromtxt(target, 
+                                         delimiter='\t')
+                    
                     ti   = data[:,0]
                     
                     return MRPy.from_resampling(ti, data[:,1:])
@@ -162,13 +164,12 @@ class MRPy(np.ndarray):
                 with gz.open(filename+'.csv.gz', 'rb') as target:
                 
                     data =  np.genfromtxt(target, 
-                                          delimiter=',', 
-                                          skip_header=1)
+                                          delimiter=',')
                     
                     ti   =  data[:,0] - data[0,0]
                     
                     return MRPy.from_resampling(ti, data[:,1:]/16384)
-                
+
 #---------------    
             elif (form.lower() == 'invh'):
                 
@@ -345,7 +346,7 @@ class MRPy(np.ndarray):
 
     def superpose(self, weight=1.):
         """
-        Add up all series in MRP weighted by 'weight'.
+        Add up all series in MRPy weighted by 'weight'.
         
         Parameters: weight: scalar or list with weights for summation.
         """
@@ -365,7 +366,7 @@ class MRPy(np.ndarray):
 
     def double(self):
         """
-        Double MRP duration by filling with mean values.
+        Double MRPy duration by filling with mean values.
         """
 
         Xm  = self.mean(axis=1) 
@@ -475,18 +476,14 @@ class MRPy(np.ndarray):
             for k in range(0, m):
                 k0 = m - k
                 W0 = W[k0:]/np.sum(W[k0:])
-#               print(k,W0,self[kX,:k+m+1])
                 X[kX,k] = np.sum(W0*self[kX,:k+m+1])
 
             for k in range(m, self.N-m-1):
-#               if k==m: print(k,W,self[kX,k-m:k+m+1])
                 X[kX,k] = np.sum(W*self[kX,k-m:k+m+1])
-#               if k==self.N-m-1: print(k,W,self[kX,k-m:k+m+1])
 
             for k in range(self.N-m-1, self.N):
                 k0 = m - k + self.N
                 W0 = W[:k0]/np.sum(W[:k0])
-#               print(k,W0,self[kX,k-m:])
                 X[kX,k] = np.sum(W0*self[kX,k-m:])
 
         return X
@@ -682,7 +679,7 @@ class MRPy(np.ndarray):
     def sdof_Fourier(self, fn, zeta):
         """
         Integrates the dynamic equilibrium differential equation by Fourier.
-        The input MRP is assumed to be an acceleration (force over mass),
+        The input MRPy is assumed to be an acceleration (force over mass),
         otherwise the result must be divided by system mass to have
         displacement unit.
         System properties (frequency and damping) may be provided as 
@@ -722,7 +719,6 @@ class MRPy(np.ndarray):
         Estimate the free decay response of a dynamic system from the
         response to a wide band excitation by the random decrement (RD) 
         method. 
-    
         Parameters:  div: number of divisions of total length, N//n,
                           to define the length of decrement series.
                           The divided length will be eventually truncated
@@ -730,7 +726,7 @@ class MRPy(np.ndarray):
                      thr: threshold level that defines the reference
                           upcrossing level, given as a multiple of the 
                           standard deviation of the reference MRP.
-                     ref: row of MRP to be used as reference series.
+                     ref: row of MRPy to be used as reference series.
                           The other series will be splitted at the same
                           crossing points, what implies phase consistency.
         """
@@ -762,7 +758,7 @@ class MRPy(np.ndarray):
     def fit_decay(self):
         """
         Fit the theoretical free decay function of a sdof dynamic system 
-        to the provided MRP. The MRP mean value is discarded. The fitted
+        to the provided MRP. The MRPy mean value is discarded. The fitted
         parameters are output as a tuple P = (Xp, fn, zt, ph), where
         Xp is the amplitude, fn is the fundamental (undamped) frequency,
         zt is the damping as the ratio of critical, and ph is the phase
@@ -811,7 +807,123 @@ class MRPy(np.ndarray):
         return MRPy(X, fs), P
 
 #=============================================================================
-# 4. MRP properties (as non-MRP outputs)
+# 4. Class constructors from conceptual properties
+#=============================================================================
+
+    def check_fs(N, fs, Td):
+        """
+        Verifies if either fs or Td are given, and returns 
+        the standard property fs
+        """
+            
+        if (np.mod(N, 2) != 0):              # enforce N to be even
+            N   =  N - 1
+
+        if ((fs != None) & (Td == None)):    # if fs is available...
+            pass
+
+        elif ((fs == None) & (Td != None)):  # if Td is available
+            fs = N/Td
+
+        else: 
+            sys.exit('Either fs or Td must be specified!')
+        
+        return fs, N/fs
+        
+#-----------------------------------------------------------------------------
+
+    def zero_process(NX=1, N=1000, fs=None, Td=None):
+        """
+        Add up all series in MRPy weighted by 'weight'.
+        
+        Parameters: NX: number of processes in the MRPy object.
+                    N:  length of each process.
+                    fs: sampling frequency (in Hz), or alternatively
+                    Td: processes duration (second)
+        """
+
+        fs, Td = MRPy.check_fs(N, fs, Td)
+
+        return MRPy(np.zeros((NX,N)), fs)
+
+#-----------------------------------------------------------------------------
+
+    def Dirac(NX=1, N=1000, t0=0.0, fs=None, Td=None):
+        """
+        Add up all series in MRPy weighted by 'weight'.
+        
+        Parameters: NX: number of processes in the MRPy object.
+                    N:  length of each process.
+                    t0: time at which impulse must be given
+                    fs: sampling frequency (in Hz), or alternatively
+                    Td: processes duration (second)
+        """
+
+        fs, Td   = MRPy.check_fs(N, fs, Td)
+        i0       = int(t0//fs)
+        X        = np.zeros((NX,N))
+        X[:,i0]  = 1.0
+
+        return MRPy(X, fs)
+
+#-----------------------------------------------------------------------------
+
+    def Heaviside(NX=1, N=1000, t0=0.0, fs=None, Td=None):
+        """
+        Add up all series in MRPy weighted by 'weight'.
+        
+        Parameters: NX: number of processes in the MRPy object.
+                    N:  length of each process.
+                    t0: time at which step must be given
+                    fs: sampling frequency (in Hz), or alternatively
+                    Td: processes duration (second)
+        """
+
+        fs, Td   = MRPy.check_fs(N, fs, Td)
+        i0       = int(t0*fs)
+        X        = np.zeros((NX,N))
+        X[:,i0:] = 1.0
+
+        return MRPy(X, fs)
+
+#-----------------------------------------------------------------------------
+
+    def white_noise(NX=1, N=1000, fs=None, Td=None):
+        """
+        Add up all series in MRPy weighted by 'weight'.
+        
+        Parameters: NX: number of processes in the MRPy object.
+                    N:  length of each process.
+                    fs: sampling frequency (in Hz), or alternatively
+                    Td: processes duration (second)
+        """
+
+        fs, Td  = MRPy.check_fs(N, fs, Td)
+        M       = N//2 + 1
+        Sx      = np.ones((NX, M))*Td/M
+
+        return MRPy.from_periodogram(Sx, fs)
+
+#-----------------------------------------------------------------------------
+
+    def pink_noise(NX=1, N=1000, fs=None, Td=None):
+        """
+        Add up all series in MRPy weighted by 'weight'.
+        
+        Parameters: NX: number of processes in the MRPy object.
+                    N:  length of each process.
+                    fs: sampling frequency (in Hz), or alternatively
+                    Td: processes duration (second)
+        """
+
+        fs, Td  = MRPy.check_fs(N, fs, Td)
+        M       = N//2 + 1
+        Sx      = np.ones((NX, M))*Td/M
+
+        return MRPy.from_periodogram(Sx, fs)
+
+#=============================================================================
+# 5. MRPy properties (as non-MRPy outputs)
 #=============================================================================
 
     def periodogram(self):
@@ -904,7 +1016,7 @@ class MRPy(np.ndarray):
     
     def Davenport(self, T=-1.):
         """
-        Peak factor of a MRP by Davenport's formula.
+        Peak factor of a MRPy by Davenport's formula.
         
         Parameters:  T: observation time for estimating peak factor.
                         The default value is -1, that means the total
@@ -939,7 +1051,7 @@ class MRPy(np.ndarray):
     
     def splitmax(self, T=-1.):
         """
-        Peak factor of a MRP by the "splitmax" method.
+        Peak factor of a MRPy by the "splitmax" method.
         
         Parameters:  T: observation time for estimating peak factor.
                         The default value is -1, that means the total
@@ -985,7 +1097,7 @@ class MRPy(np.ndarray):
         return gX
 
 #=============================================================================
-# 5. Utilities
+# 6. Utilities
 #=============================================================================
 
     def t_axis(self):        
